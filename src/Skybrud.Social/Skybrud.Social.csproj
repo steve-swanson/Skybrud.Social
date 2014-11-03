@@ -75,6 +75,52 @@
     <Compile Include="Instagram\Objects\InstagramPosition.cs" />
     <Compile Include="Instagram\Objects\InstagramTaggedUser.cs" />
     <Compile Include="Instagram\Options\InstagramLocationSearchOptions.cs" />
+    <Compile Include="LinkedIn\Endpoints\LinkedInCommunicationsEndpoint.cs" />
+    <Compile Include="LinkedIn\Endpoints\LinkedInCompaniesEndpoint.cs" />
+    <Compile Include="LinkedIn\Endpoints\LinkedInGroupsEndpoint.cs" />
+    <Compile Include="LinkedIn\Endpoints\LinkedInJobsEndpoint.cs" />
+    <Compile Include="LinkedIn\Endpoints\LinkedInPeopleEndpoint.cs" />
+    <Compile Include="LinkedIn\Endpoints\LinkedInShareSocialEndpoint.cs" />
+    <Compile Include="LinkedIn\Endpoints\Raw\LinkedInCommunicationsRawEndpoint.cs" />
+    <Compile Include="LinkedIn\Endpoints\Raw\LinkedInCompaniesRawEndpoint.cs" />
+    <Compile Include="LinkedIn\Endpoints\Raw\LinkedInGroupsRawEndpoint.cs" />
+    <Compile Include="LinkedIn\Endpoints\Raw\LinkedInJobsRawEndpoint.cs" />
+    <Compile Include="LinkedIn\Endpoints\Raw\LinkedInPeopleRawEndpoint.cs" />
+    <Compile Include="LinkedIn\Endpoints\Raw\LinkedInShareSocialRawEndpoint.cs" />
+    <Compile Include="LinkedIn\Exceptions\LinkedInException.cs" />
+    <Compile Include="LinkedIn\Exceptions\LinkedInNotFoundException.cs" />
+    <Compile Include="LinkedIn\Exceptions\LinkedInOAuthAccessTokenException.cs" />
+    <Compile Include="LinkedIn\Exceptions\LinkedInOAuthException.cs" />
+    <Compile Include="LinkedIn\LinkedInScopeCollection.cs" />
+    <Compile Include="LinkedIn\LinkedInService.cs" />
+    <Compile Include="LinkedIn\OAuth\LinkedInOAuthClient.cs" />
+    <Compile Include="LinkedIn\LinkedInScope.cs" />
+    <Compile Include="LinkedIn\Objects\Profile\LinkedInApiStandardProfileRequest.cs" />
+    <Compile Include="LinkedIn\Objects\Profile\LinkedInCompanyBase.cs" />
+    <Compile Include="LinkedIn\Objects\Profile\LinkedInCurrentShare.cs" />
+    <Compile Include="LinkedIn\Objects\Profile\LinkedInCertification.cs" />
+    <Compile Include="LinkedIn\Objects\Profile\LinkedInCompany.cs" />
+    <Compile Include="LinkedIn\Objects\Profile\LinkedInCourse.cs" />
+    <Compile Include="LinkedIn\Objects\Profile\LinkedInEducation.cs" />
+    <Compile Include="LinkedIn\Objects\Profile\LinkedInIndustryBase.cs" />
+    <Compile Include="LinkedIn\Objects\Profile\LinkedInLanguage.cs" />
+    <Compile Include="LinkedIn\Objects\Profile\LinkedInRecommendation.cs" />
+    <Compile Include="LinkedIn\Objects\Profile\LinkedInSkill.cs" />
+    <Compile Include="LinkedIn\Objects\Profile\LinkedInFollowAndSuggestion.cs" />
+    <Compile Include="LinkedIn\Objects\Profile\LinkedInVolunteer.cs" />
+    <Compile Include="LinkedIn\Objects\Shared\LinkedInDate.cs" />
+    <Compile Include="LinkedIn\Objects\Profile\LinkedInInventor.cs" />
+    <Compile Include="LinkedIn\Objects\Profile\LinkedInPatent.cs" />
+    <Compile Include="LinkedIn\Objects\Profile\LinkedInPosition.cs" />
+    <Compile Include="LinkedIn\Objects\Profile\LinkedInProfile.cs" />
+    <Compile Include="LinkedIn\Objects\Shared\LinkedInEmail.cs" />
+    <Compile Include="LinkedIn\Objects\Profile\LinkedInLocation.cs" />
+    <Compile Include="LinkedIn\Objects\Profile\LinkedInConnection.cs" />
+    <Compile Include="LinkedIn\Objects\Profile\LinkedInPublication.cs" />
+    <Compile Include="LinkedIn\Objects\Profile\LinkedInSiteStandardProfileRequest.cs" />
+    <Compile Include="LinkedIn\Responses\LinkedInAccessTokenResponse.cs" />
+    <Compile Include="LinkedIn\Responses\LinkedInResponse.cs" />
+    <Compile Include="LinkedIn\Responses\LinkedInProfileResponse.cs" />
     <Compile Include="SocialJsonArray.cs" />
     <Compile Include="Facebook\Endpoints\FacebookMethodsEndpoint.cs" />
     <Compile Include="Facebook\Endpoints\Raw\FacebookMethodsRawEndpoint.cs" />
@@ -282,6 +328,7 @@
     <Compile Include="Twitter\Entities\TwitterStatusMessageEntities.cs" />
     <Compile Include="Twitter\Entities\TwitterUrlEntity.cs" />
     <Compile Include="Twitter\Enums\TwitterGranularity.cs" />
+    <Compile Include="LinkedIn\Objects\Shared\LinkedInIndustry.cs" />
     <Compile Include="Twitter\Objects\TwitterBoundingBox.cs" />
     <Compile Include="Twitter\Objects\TwitterContributor.cs" />
     <Compile Include="Twitter\Objects\TwitterCoordinates.cs" />
@@ -348,6 +395,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="LinkedIn\Options\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
