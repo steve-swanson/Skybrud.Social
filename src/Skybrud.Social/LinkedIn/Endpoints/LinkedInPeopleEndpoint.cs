@@ -1,4 +1,5 @@
 ﻿using Skybrud.Social.LinkedIn.Endpoints.Raw;
+using Skybrud.Social.LinkedIn.Objects.Profile;
 
 namespace Skybrud.Social.LinkedIn.Endpoints {
 
@@ -27,8 +28,16 @@ namespace Skybrud.Social.LinkedIn.Endpoints {
 
         #region Methods
 
-        
-        
+        public LinkedInProfile GetProfile()
+        {
+            return LinkedInProfile.ParseJson(Raw.GetProfile());
+        }
+
+        public LinkedInProfile GetProfile(string id)
+        {
+            return LinkedInProfile.ParseJson(Raw.GetProfile(id));
+        }
+
         #endregion
     }
 }

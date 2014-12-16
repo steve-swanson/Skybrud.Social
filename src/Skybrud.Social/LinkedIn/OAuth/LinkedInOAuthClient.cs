@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Specialized;
+using System.IO;
+using System.Net;
 using System.Web;
 using Skybrud.Social.LinkedIn.Endpoints.Raw;
 using Skybrud.Social.LinkedIn.Responses;
+using Skybrud.Social.OAuth;
 
 namespace Skybrud.Social.LinkedIn.OAuth {
 
@@ -10,7 +13,7 @@ namespace Skybrud.Social.LinkedIn.OAuth {
     /// Class for handling the raw communication with the LinkedIn API as well
     /// as any OAuth 2.0 communication/authentication.
     /// </summary>
-    public class LinkedInOAuthClient {
+    public class LinkedInOAuthClient : OAuthClient {
 
         #region Private Fields
 
@@ -110,22 +113,23 @@ namespace Skybrud.Social.LinkedIn.OAuth {
         /// <summary>
         /// Initializes an OAuth client with the specified app ID and app secret.
         /// </summary>
-        /// <param name="appId">The ID of the app.</param>
-        /// <param name="appSecret">The secret of the app.</param>
-        public LinkedInOAuthClient(long appId, string appSecret) {
-            ClientId = appId + "";
-            ClientSecret = appSecret;
+        /// <param name="clientId">The ID of the app.</param>
+        /// <param name="clientSecret">The secret of the app.</param>
+        public LinkedInOAuthClient(string clientId, string clientSecret) {
+            ClientId = clientId;
+            ClientSecret = clientSecret;
         }
 
         /// <summary>
         /// Initializes an OAuth client with the specified app ID, app secret and return URI.
         /// </summary>
-        /// <param name="appId">The ID of the app.</param>
-        /// <param name="appSecret">The secret of the app.</param>
+        /// <param name="clientId">The ID of the app.</param>
+        /// <param name="clientSecret">The secret of the app.</param>
         /// <param name="redirectUri">The return URI of the app.</param>
-        public LinkedInOAuthClient(long appId, string appSecret, string redirectUri) {
-            ClientId = appId + "";
-            ClientSecret = appSecret;
+        public LinkedInOAuthClient(string clientId, string clientSecret, string redirectUri)
+        {
+            ClientId = clientId;
+            ClientSecret = clientSecret;
             RedirectUri = redirectUri;
         }
 
@@ -151,7 +155,8 @@ namespace Skybrud.Social.LinkedIn.OAuth {
         public string GetAuthorizationUrl(string state, LinkedInScope scope) {
             return String.Format(
                 "https://www.linkedin.com/uas/oauth2/authorization?response_type=code&client_id={0}&redirect_uri={1}&state={2}&scope={3}",
-                HttpUtility.UrlEncode(ClientId),
+                //HttpUtility.UrlEncode(ClientId),
+                HttpUtility.UrlEncode(ConsumerKey),
                 HttpUtility.UrlEncode(RedirectUri),
                 HttpUtility.UrlEncode(state),
                 HttpUtility.UrlEncode(scope.ToString().ToLower())
@@ -168,7 +173,8 @@ namespace Skybrud.Social.LinkedIn.OAuth {
         {
             return String.Format(
                 "https://www.linkedin.com/uas/oauth2/authorization?response_type=code&client_id={0}&redirect_uri={1}&state={2}&scope={3}",
-                HttpUtility.UrlEncode(ClientId),
+                //HttpUtility.UrlEncode(ClientId),
+                HttpUtility.UrlEncode(ConsumerKey),
                 HttpUtility.UrlEncode(RedirectUri),
                 HttpUtility.UrlEncode(state),
                 HttpUtility.UrlEncode(scope.ToString().Replace(", ", "+").ToLower())
@@ -192,6 +198,16 @@ namespace Skybrud.Social.LinkedIn.OAuth {
             // Parse the response
             return LinkedInAccessTokenResponse.ParseJson(contents);
 
+        }
+
+        public string DoLinkedInGetRequestAsString(string url, NameValueCollection queryString )
+        {
+
+            var request = (HttpWebRequest) WebRequest.Create(String.Format("{0}?format=json&oauth2_access_token={1}", url, AccessToken));
+            var response = (HttpWebResponse) request.GetResponse();
+
+            var reader = new StreamReader(response.GetResponseStream());
+            return reader.ReadToEnd();
         }
 
         #endregion
